@@ -1,5 +1,41 @@
 # mattpocock-skills
 
+## 1.3.2
+
+### Patch Changes
+
+- [`9642fb9`](https://github.com/imanujela/matt-pocock-skills/commit/9642fb9658aaf8b01f6505ccf5277a0655557b46) Thanks [@imanujela](https://github.com/imanujela)! - `ask-matt` now reads a skill's `SKILL.md` before stating what it does or recommending a step be skipped, instead of trusting its own one-line summaries ([#614](https://github.com/imanujela/matt-pocock-skills/issues/614)).
+
+- [`9642fb9`](https://github.com/imanujela/matt-pocock-skills/commit/9642fb9658aaf8b01f6505ccf5277a0655557b46) Thanks [@imanujela](https://github.com/imanujela)! - `code-review` now searches the repo for standards files and always hands `CODING_STANDARDS.md` / `CONTRIBUTING.md` to the Standards sub-agent ([#1065](https://github.com/imanujela/matt-pocock-skills/issues/1065)), runs both sub-agents in the foreground and uses their returned reports ([#1073](https://github.com/imanujela/matt-pocock-skills/issues/1073)), and resolves the issue tracker through the provided tracker doc instead of a hard-coded path ([#937](https://github.com/imanujela/matt-pocock-skills/issues/937)).
+
+- [`9642fb9`](https://github.com/imanujela/matt-pocock-skills/commit/9642fb9658aaf8b01f6505ccf5277a0655557b46) Thanks [@imanujela](https://github.com/imanujela)! - `diagnosing-bugs` Phase 5 now has the agent `diff` a forced mutation against a pristine copy before trusting the red, so an edit that silently changed nothing can't pass as a failing test ([#955](https://github.com/imanujela/matt-pocock-skills/issues/955)).
+
+- [`9642fb9`](https://github.com/imanujela/matt-pocock-skills/commit/9642fb9658aaf8b01f6505ccf5277a0655557b46) Thanks [@imanujela](https://github.com/imanujela)! - Fixed the GitHub tracker template's external-PR listing, which failed on `authorAssociation` ([#468](https://github.com/imanujela/matt-pocock-skills/issues/468), thanks @lofi-coding). Re-run `/setup-matt-pocock-skills` to refresh `docs/agents/issue-tracker.md`.
+
+- [`9642fb9`](https://github.com/imanujela/matt-pocock-skills/commit/9642fb9658aaf8b01f6505ccf5277a0655557b46) Thanks [@imanujela](https://github.com/imanujela)! - `grilling` words each question so "yes" accepts the recommended answer, so agreeing never means answering "no" ([#706](https://github.com/imanujela/matt-pocock-skills/issues/706)).
+
+- [`9642fb9`](https://github.com/imanujela/matt-pocock-skills/commit/9642fb9658aaf8b01f6505ccf5277a0655557b46) Thanks [@imanujela](https://github.com/imanujela)! - `handoff` now names where the OS temp directory is (`$TMPDIR`, else `/tmp`; `%TEMP%` on Windows), so agents stop guessing ([#272](https://github.com/imanujela/matt-pocock-skills/issues/272)).
+
+- [`9642fb9`](https://github.com/imanujela/matt-pocock-skills/commit/9642fb9658aaf8b01f6505ccf5277a0655557b46) Thanks [@imanujela](https://github.com/imanujela)! - `implement` now calls the Skill tool for `tdd` and `code-review` instead of bare `/skill` prose, matching [#878](https://github.com/imanujela/matt-pocock-skills/issues/878).
+
+- [`9642fb9`](https://github.com/imanujela/matt-pocock-skills/commit/9642fb9658aaf8b01f6505ccf5277a0655557b46) Thanks [@imanujela](https://github.com/imanujela)! - `implement` fetches a passed ticket reference from the issue tracker and states its title before starting, asking when the reference is ambiguous ([#700](https://github.com/imanujela/matt-pocock-skills/issues/700)).
+
+- [`9642fb9`](https://github.com/imanujela/matt-pocock-skills/commit/9642fb9658aaf8b01f6505ccf5277a0655557b46) Thanks [@imanujela](https://github.com/imanujela)! - `setup-matt-pocock-skills` now creates missing triage labels on GitHub/GitLab ([#616](https://github.com/imanujela/matt-pocock-skills/issues/616)), fixes the GitLab template's `glab` commands ([#635](https://github.com/imanujela/matt-pocock-skills/issues/635)), reads GitHub issues with `--json` so labels and body come through ([#733](https://github.com/imanujela/matt-pocock-skills/issues/733)), and names the "Label in our tracker" column in `triage-labels.md` ([#801](https://github.com/imanujela/matt-pocock-skills/issues/801)). Re-run `/setup-matt-pocock-skills` to refresh `docs/agents/`.
+
+- [`9642fb9`](https://github.com/imanujela/matt-pocock-skills/commit/9642fb9658aaf8b01f6505ccf5277a0655557b46) Thanks [@imanujela](https://github.com/imanujela)! - `tdd` now gives each proposed seam a one-line note on what it catches and what it misses, so choosing between seams is no longer a guess ([#607](https://github.com/imanujela/matt-pocock-skills/issues/607)).
+
+- [`9642fb9`](https://github.com/imanujela/matt-pocock-skills/commit/9642fb9658aaf8b01f6505ccf5277a0655557b46) Thanks [@imanujela](https://github.com/imanujela)! - `teach` quizzes vary which position holds the correct answer ([#611](https://github.com/imanujela/matt-pocock-skills/issues/611)).
+
+- [`9642fb9`](https://github.com/imanujela/matt-pocock-skills/commit/9642fb9658aaf8b01f6505ccf5277a0655557b46) Thanks [@imanujela](https://github.com/imanujela)! - `teach` writes its workspace to the directory you ran it in, not the skill folder ([#377](https://github.com/imanujela/matt-pocock-skills/issues/377)).
+
+- [`9642fb9`](https://github.com/imanujela/matt-pocock-skills/commit/9642fb9658aaf8b01f6505ccf5277a0655557b46) Thanks [@imanujela](https://github.com/imanujela)! - `to-tickets` makes each ticket a sub-issue of its source issue (the GitHub tracker template now gives the command), and omits `## Blocked by` when blockers are native edges. Re-run `/setup-matt-pocock-skills` to refresh `docs/agents/issue-tracker.md`. Thanks @richardwhatever ([#554](https://github.com/imanujela/matt-pocock-skills/issues/554)) and @adamslowe ([#262](https://github.com/imanujela/matt-pocock-skills/issues/262)).
+
+- [`9642fb9`](https://github.com/imanujela/matt-pocock-skills/commit/9642fb9658aaf8b01f6505ccf5277a0655557b46) Thanks [@imanujela](https://github.com/imanujela)! - `wayfinder` no longer labels maps or tickets `ready-for-agent` ([#518](https://github.com/imanujela/matt-pocock-skills/issues/518)), writes cross-references only with real issue ids ([#507](https://github.com/imanujela/matt-pocock-skills/issues/507)), opens no PR from research branches ([#576](https://github.com/imanujela/matt-pocock-skills/issues/576)), and resolves each ticket as the type its label names ([#625](https://github.com/imanujela/matt-pocock-skills/issues/625)). Thanks @jcwayne, @baob, @rynz and @sponge-b0b.
+
+- [`9642fb9`](https://github.com/imanujela/matt-pocock-skills/commit/9642fb9658aaf8b01f6505ccf5277a0655557b46) Thanks [@imanujela](https://github.com/imanujela)! - `wizard` template fixes: `_existing` decodes a double-quoted `.env` value, so Enter-keeps-current no longer stores the quotes ([#1220](https://github.com/imanujela/matt-pocock-skills/issues/1220)); stages run inside `run_wizard`, so editing the script mid-run can't kill it ([#1142](https://github.com/imanujela/matt-pocock-skills/issues/1142)); `_clear` falls back to ANSI when `tput clear` fails ([#1081](https://github.com/imanujela/matt-pocock-skills/issues/1081)); `write_env` sets the shell variable too ([#1041](https://github.com/imanujela/matt-pocock-skills/issues/1041)); drop the unused `RED` ([#1003](https://github.com/imanujela/matt-pocock-skills/issues/1003)).
+
+- [`9642fb9`](https://github.com/imanujela/matt-pocock-skills/commit/9642fb9658aaf8b01f6505ccf5277a0655557b46) Thanks [@imanujela](https://github.com/imanujela)! - `wizard` template fixes: `ask` uses Readline so arrow keys move the cursor ([#741](https://github.com/imanujela/matt-pocock-skills/issues/741)); `write_env` single-quotes values so spaces, `#`, `$` and quotes survive `source` and dotenv ([#770](https://github.com/imanujela/matt-pocock-skills/issues/770)); `open_url` prints the open-it-yourself warning when no browser opener exists ([#774](https://github.com/imanujela/matt-pocock-skills/issues/774)); `write_env` writes through a symlinked `.env` and keeps an existing file's mode ([#811](https://github.com/imanujela/matt-pocock-skills/issues/811)); `ask` and `ask_secret` fail at EOF instead of looping ([#852](https://github.com/imanujela/matt-pocock-skills/issues/852)).
+
 ## 1.3.1
 
 ### Patch Changes
