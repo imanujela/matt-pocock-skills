@@ -1,0 +1,25 @@
+{
+  "name": "imanujela",
+  "owner": {
+    "name": "imanujela",
+    "url": "https://github.com/imanujela"
+  },
+  "description": "Rewritten Matt Pocock skills, plus deepen-picked, rewrite-agent-docs, pressure-check, and simplify-diff. Install from imanujela/matt-pocock-skills.",
+  "plugins": [
+    {
+      "name": "mattpocock-skills",
+      "source": "./",
+      "description": "Agent skills for real engineering, rewritten. Includes deepen-picked and rewrite-agent-docs.",
+      "category": "engineering",
+      "keywords": [
+        "engineering",
+        "skills",
+        "tdd",
+        "code-review",
+        "grilling",
+        "deepen-picked",
+        "rewrite-agent-docs"
+      ]
+    }
+  ]
+}

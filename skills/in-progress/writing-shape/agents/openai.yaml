@@ -1,0 +1,5 @@
+interface:
+  display_name: "Writing Shape"
+  short_description: "Writing, exploit: shape an article block by block."
+policy:
+  allow_implicit_invocation: false

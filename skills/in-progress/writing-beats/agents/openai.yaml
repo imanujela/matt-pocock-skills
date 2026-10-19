@@ -1,0 +1,5 @@
+interface:
+  display_name: "Writing Beats"
+  short_description: "Writing, exploit: a journey of beats, one beat at a time."
+policy:
+  allow_implicit_invocation: false

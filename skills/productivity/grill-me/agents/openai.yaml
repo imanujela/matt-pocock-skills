@@ -1,0 +1,5 @@
+interface:
+  display_name: "Grill Me"
+  short_description: "Settle a plan or design by interview"
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Deepen Picked"
+  short_description: "Deepen one already-chosen module"
+policy:
+  allow_implicit_invocation: false

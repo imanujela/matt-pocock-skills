@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Architecture review for matt-skills</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+    </script>
+    <style>
+      .seam { stroke-dasharray: 4 4; }
+      .leak { stroke: #dc2626; }
+      .deep { background: linear-gradient(135deg, #0f172a, #1e293b); }
+    </style>
+  </head>
+  <body class="bg-stone-50 text-slate-900 font-sans">
+    <main class="max-w-5xl mx-auto px-6 py-12 space-y-12">
+      <header class="flex flex-wrap items-end justify-between gap-6 border-b border-stone-200 pb-6">
+        <div>
+          <p class="text-xs uppercase tracking-wider text-stone-500">Architecture review</p>
+          <h1 class="font-serif text-3xl text-slate-900">matt-skills</h1>
+          <p class="text-sm text-stone-600">2026-10-19</p>
+        </div>
+        <ul class="text-xs space-y-1 text-stone-600">
+          <li><span class="inline-block w-3 h-3 border border-slate-800 align-middle mr-2"></span>module</li>
+          <li><span class="inline-block w-6 border-t border-dashed border-slate-800 align-middle mr-2"></span>seam</li>
+          <li><span class="inline-block w-6 border-t-2 border-red-600 align-middle mr-2"></span>leakage</li>
+          <li><span class="inline-block w-3 h-3 deep align-middle mr-2"></span>deep module</li>
+        </ul>
+      </header>
+
+      <section id="candidates" class="space-y-10">
+
+        <article id="deepen-picked" class="rounded-xl border border-stone-200 bg-white p-6 space-y-4">
+          <div class="flex flex-wrap items-center gap-2">
+            <h2 class="font-serif text-2xl">Extract the deepening the survey never finishes</h2>
+            <span class="text-xs uppercase tracking-wider rounded-full bg-emerald-100 text-emerald-800 px-2 py-1">Strong</span>
+            <span class="text-xs uppercase tracking-wider rounded-full bg-slate-100 text-slate-700 px-2 py-1">in-process</span>
+          </div>
+          <p class="font-mono text-sm text-stone-600">skills/engineering/improve-codebase-architecture/SKILL.md · skills/engineering/codebase-design/DEEPENING.md · skills/engineering/ask-matt/SKILL.md</p>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <p class="text-xs uppercase tracking-wider text-stone-500 mb-2">Before</p>
+              <div class="rounded-lg border border-slate-200 bg-white p-4 h-80 overflow-hidden">
+                <pre class="mermaid">
+flowchart TB
+  S[survey] --> R[HTML report]
+  R --> G[grill loop]
+  G --> DM[domain notes]
+  G --> DT[design it twice]
+  A[ask-matt] -.leak.-> G
+  B[diagnosing-bugs] -.leak.-> G
+  classDef leak stroke:#dc2626,stroke-width:2px
+  class A,B,G leak
+                </pre>
+              </div>
+            </div>
+            <div>
+              <p class="text-xs uppercase tracking-wider text-stone-500 mb-2">After</p>
+              <div class="relative h-80 rounded-lg border border-slate-200 bg-stone-100 p-4">
+                <div class="absolute left-4 right-4 top-8 h-14 rounded border-2 border-dashed border-slate-500 flex items-center justify-center text-xs uppercase tracking-wider">seam: one chosen candidate</div>
+                <div class="deep text-stone-50 absolute left-8 right-8 top-28 bottom-6 rounded-lg p-4">
+                  <p class="text-xs uppercase tracking-wider text-emerald-300">deepen-picked</p>
+                  <p class="text-sm mt-2">name the seam</p>
+                  <p class="text-sm text-stone-400">shrink the interface</p>
+                  <p class="text-sm text-stone-400">deletion test</p>
+                  <p class="text-sm text-stone-400">tests cross the same seam</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p><span class="font-semibold">Problem.</span> The survey interface is as wide as the deepening, so every caller re-derives it.</p>
+          <p><span class="font-semibold">Solution.</span> One deep module: a chosen candidate in, a deep module or a one-line refusal out.</p>
+          <ul class="text-sm list-disc pl-5 space-y-1">
+            <li>locality: deepening lives in one module</li>
+            <li>leverage: one interface, N call sites</li>
+            <li>interface shrinks to one candidate</li>
+            <li>tests cross the same seam</li>
+          </ul>
+        </article>
+
+        <article id="ticket-interface" class="rounded-xl border border-stone-200 bg-white p-6 space-y-4">
+          <div class="flex flex-wrap items-center gap-2">
+            <h2 class="font-serif text-2xl">One ticket interface, two adapters</h2>
+            <span class="text-xs uppercase tracking-wider rounded-full bg-amber-100 text-amber-900 px-2 py-1">Worth exploring</span>
+            <span class="text-xs uppercase tracking-wider rounded-full bg-slate-100 text-slate-700 px-2 py-1">ports &amp; adapters</span>
+          </div>
+          <p class="font-mono text-sm text-stone-600">skills/engineering/to-tickets/SKILL.md</p>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <p class="text-xs uppercase tracking-wider text-stone-500 mb-2">Before</p>
+              <div class="h-80 rounded-lg border border-slate-200 bg-stone-50 p-4 flex gap-4 items-end">
+                <div class="flex-1 flex flex-col justify-end h-full">
+                  <div class="h-40 border-2 border-slate-800 bg-white text-xs uppercase tracking-wider flex items-center justify-center text-center px-1">local template</div>
+                  <div class="h-36 border-2 border-slate-400 bg-slate-100 text-xs uppercase tracking-wider flex items-center justify-center">same fields</div>
+                </div>
+                <div class="flex-1 flex flex-col justify-end h-full">
+                  <div class="h-40 border-2 border-slate-800 bg-white text-xs uppercase tracking-wider flex items-center justify-center text-center px-1">tracker template</div>
+                  <div class="h-36 border-2 border-slate-400 bg-slate-100 text-xs uppercase tracking-wider flex items-center justify-center">same fields</div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <p class="text-xs uppercase tracking-wider text-stone-500 mb-2">After</p>
+              <div class="h-80 rounded-lg border border-slate-200 bg-stone-50 p-4 flex flex-col justify-end">
+                <div class="h-10 border-2 border-dashed border-slate-700 text-xs uppercase tracking-wider flex items-center justify-center mb-2">interface: what to build, acceptance, blocked by</div>
+                <div class="flex gap-3 h-44">
+                  <div class="flex-1 border border-slate-300 bg-white text-xs uppercase tracking-wider flex items-center justify-center">file adapter</div>
+                  <div class="flex-1 border border-slate-300 bg-white text-xs uppercase tracking-wider flex items-center justify-center">tracker adapter</div>
+                  <div class="flex-[2] deep text-stone-100 text-xs uppercase tracking-wider flex items-center justify-center">ticket module</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p><span class="font-semibold">Problem.</span> Two templates restate one ticket interface, so the blocking edge is not the only thing that varies.</p>
+          <p><span class="font-semibold">Solution.</span> Keep two adapters. Let only the blocking-edge encoding differ.</p>
+          <ul class="text-sm list-disc pl-5 space-y-1">
+            <li>interface shrinks to one ticket shape</li>
+            <li>two adapters justify the seam</li>
+            <li>acceptance is the test surface</li>
+          </ul>
+        </article>
+
+        <article id="mock-seam" class="rounded-xl border border-stone-200 bg-white p-6 space-y-4">
+          <div class="flex flex-wrap items-center gap-2">
+            <h2 class="font-serif text-2xl">Tests cross the seam, not past it</h2>
+            <span class="text-xs uppercase tracking-wider rounded-full bg-amber-100 text-amber-900 px-2 py-1">Worth exploring</span>
+            <span class="text-xs uppercase tracking-wider rounded-full bg-slate-100 text-slate-700 px-2 py-1">mock</span>
+          </div>
+          <p class="font-mono text-sm text-stone-600">skills/engineering/tdd/mocking.md · skills/engineering/tdd/tests.md · skills/engineering/tdd/SKILL.md</p>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <p class="text-xs uppercase tracking-wider text-stone-500 mb-2">Before</p>
+              <div class="h-80 rounded-lg border border-slate-200 p-4 space-y-2 bg-white">
+                <div class="h-10 border border-slate-800 text-xs uppercase tracking-wider flex items-center px-3">test</div>
+                <svg class="w-full h-6" viewBox="0 0 200 24"><line x1="20" y1="0" x2="20" y2="24" class="leak" stroke-width="2"/></svg>
+                <div class="h-10 border border-red-600 text-red-700 text-xs uppercase tracking-wider flex items-center px-3">mock of an internal collaborator</div>
+                <div class="h-10 border border-slate-300 text-xs uppercase tracking-wider flex items-center px-3 text-stone-400">module under test, skipped</div>
+                <div class="h-10 border border-slate-300 text-xs uppercase tracking-wider flex items-center px-3">external adapter</div>
+              </div>
+            </div>
+            <div>
+              <p class="text-xs uppercase tracking-wider text-stone-500 mb-2">After</p>
+              <div class="h-80 rounded-lg border border-slate-200 p-4 space-y-2 bg-white">
+                <div class="h-10 border border-slate-800 text-xs uppercase tracking-wider flex items-center px-3">test</div>
+                <div class="h-8 border-t border-dashed border-slate-500 text-xs uppercase tracking-wider flex items-center px-3">seam</div>
+                <div class="deep text-stone-100 h-24 text-xs uppercase tracking-wider flex items-center px-3">module under test</div>
+                <div class="h-10 border border-slate-400 text-xs uppercase tracking-wider flex items-center px-3">mock adapter, external only</div>
+              </div>
+            </div>
+          </div>
+          <p><span class="font-semibold">Problem.</span> Mocking guidance leaks past the seam, so tests pin the implementation.</p>
+          <p><span class="font-semibold">Solution.</span> Mock only an external adapter. The interface stays the test surface.</p>
+          <ul class="text-sm list-disc pl-5 space-y-1">
+            <li>tests and callers share one seam</li>
+            <li>locality: fakes sit at the adapter</li>
+            <li>one adapter is a hypothetical seam</li>
+          </ul>
+        </article>
+
+        <article id="smell-baseline" class="rounded-xl border border-stone-200 bg-white p-6 space-y-4">
+          <div class="flex flex-wrap items-center gap-2">
+            <h2 class="font-serif text-2xl">Hide the smell baseline behind the review seam</h2>
+            <span class="text-xs uppercase tracking-wider rounded-full bg-amber-100 text-amber-900 px-2 py-1">Worth exploring</span>
+            <span class="text-xs uppercase tracking-wider rounded-full bg-slate-100 text-slate-700 px-2 py-1">in-process</span>
+          </div>
+          <p class="font-mono text-sm text-stone-600">skills/engineering/code-review/SKILL.md</p>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <p class="text-xs uppercase tracking-wider text-stone-500 mb-2">Before</p>
+              <div class="rounded-lg border border-slate-200 bg-white p-3 h-80">
+                <pre class="mermaid">
+flowchart LR
+  CR[code-review] --> SA[standards sub-agent]
+  CR --> SP[spec sub-agent]
+  SM[twelve smells pasted] --> SA
+  classDef leak stroke:#dc2626,stroke-width:2px
+  class SM leak
+                </pre>
+              </div>
+            </div>
+            <div>
+              <p class="text-xs uppercase tracking-wider text-stone-500 mb-2">After</p>
+              <div class="relative h-80 rounded-lg border border-slate-200 bg-stone-100 p-4">
+                <div class="h-12 border-2 border-dashed border-slate-600 text-xs uppercase tracking-wider flex items-center justify-center">seam: diff plus fixed point</div>
+                <div class="deep text-stone-100 mt-4 h-48 rounded-lg p-4 text-xs uppercase tracking-wider">
+                  <p>code-review</p>
+                  <p class="text-stone-400 mt-3 normal-case tracking-normal text-sm">smell baseline stays inside</p>
+                  <p class="text-stone-400 normal-case tracking-normal text-sm">sub-agents receive a pointer, not a paste</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p><span class="font-semibold">Problem.</span> The review interface is as wide as the smell list, because every sub-agent must be handed the list in full.</p>
+          <p><span class="font-semibold">Solution.</span> Keep the baseline in one module. Point sub-agents at it instead of pasting it.</p>
+          <ul class="text-sm list-disc pl-5 space-y-1">
+            <li>interface shrinks to the diff</li>
+            <li>locality: smells have one home</li>
+            <li>leverage across both review axes</li>
+          </ul>
+        </article>
+
+        <article id="keep-implement" class="rounded-xl border border-stone-200 bg-white p-6 space-y-4">
+          <div class="flex flex-wrap items-center gap-2">
+            <h2 class="font-serif text-2xl">Keep implement and implement-spec apart</h2>
+            <span class="text-xs uppercase tracking-wider rounded-full bg-slate-200 text-slate-700 px-2 py-1">Speculative</span>
+            <span class="text-xs uppercase tracking-wider rounded-full bg-slate-100 text-slate-700 px-2 py-1">in-process</span>
+          </div>
+          <p class="font-mono text-sm text-stone-600">skills/engineering/implement/SKILL.md · skills/engineering/implement-spec/SKILL.md</p>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <p class="text-xs uppercase tracking-wider text-stone-500 mb-2">Before</p>
+              <div class="h-80 rounded-lg border border-slate-200 p-6 flex items-center justify-around bg-white">
+                <div class="w-32 h-28 border-2 border-slate-800 text-xs uppercase tracking-wider flex items-center justify-center text-center">implement</div>
+                <div class="w-32 h-28 border-2 border-slate-800 text-xs uppercase tracking-wider flex items-center justify-center text-center">implement-spec</div>
+              </div>
+            </div>
+            <div>
+              <p class="text-xs uppercase tracking-wider text-stone-500 mb-2">After</p>
+              <div class="h-80 rounded-lg border border-slate-200 p-6 flex items-center justify-around bg-white">
+                <div class="w-32 h-28 border-2 border-slate-800 text-xs uppercase tracking-wider flex items-center justify-center text-center">implement</div>
+                <div class="w-32 h-28 border-2 border-slate-800 text-xs uppercase tracking-wider flex items-center justify-center text-center">implement-spec</div>
+              </div>
+            </div>
+          </div>
+          <p><span class="font-semibold">Problem.</span> Two build modules look like one shallow pair.</p>
+          <p><span class="font-semibold">Solution.</span> Refuse the merge. Deleting either makes its complexity reappear in the other.</p>
+          <ul class="text-sm list-disc pl-5 space-y-1">
+            <li>deletion test: both earn their keep</li>
+            <li>two adapters, two kinds of work</li>
+            <li>no testability gain from a merge</li>
+          </ul>
+        </article>
+
+        <article id="tracker-seam" class="rounded-xl border border-stone-200 bg-white p-6 space-y-4">
+          <div class="flex flex-wrap items-center gap-2">
+            <h2 class="font-serif text-2xl">Leave the issue tracker adapters in place</h2>
+            <span class="text-xs uppercase tracking-wider rounded-full bg-slate-200 text-slate-700 px-2 py-1">Speculative</span>
+            <span class="text-xs uppercase tracking-wider rounded-full bg-slate-100 text-slate-700 px-2 py-1">ports &amp; adapters</span>
+          </div>
+          <p class="font-mono text-sm text-stone-600">skills/engineering/setup-matt-pocock-skills/issue-tracker-github.md · issue-tracker-gitlab.md · issue-tracker-local.md</p>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <p class="text-xs uppercase tracking-wider text-stone-500 mb-2">Before</p>
+              <div class="h-80 rounded-lg border border-slate-200 p-4 bg-white flex flex-col justify-between">
+                <div class="h-12 border-2 border-dashed border-slate-600 text-xs uppercase tracking-wider flex items-center justify-center">issue tracker seam</div>
+                <div class="grid grid-cols-3 gap-2">
+                  <div class="h-24 border border-slate-700 text-xs uppercase tracking-wider flex items-center justify-center text-center">GitHub adapter</div>
+                  <div class="h-24 border border-slate-700 text-xs uppercase tracking-wider flex items-center justify-center text-center">GitLab adapter</div>
+                  <div class="h-24 border border-slate-700 text-xs uppercase tracking-wider flex items-center justify-center text-center">local adapter</div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <p class="text-xs uppercase tracking-wider text-stone-500 mb-2">After</p>
+              <div class="h-80 rounded-lg border border-red-200 p-4 bg-red-50 flex items-center justify-center text-center text-sm">
+                One tracker module. The three adapters vanish. Callers relearn every host.
+              </div>
+            </div>
+          </div>
+          <p><span class="font-semibold">Problem.</span> Three adapter files look like a shallow split of one tracker module.</p>
+          <p><span class="font-semibold">Solution.</span> Refuse. Two adapters already make the seam real. Three means it is load-bearing.</p>
+          <ul class="text-sm list-disc pl-5 space-y-1">
+            <li>deletion test: complexity reappears</li>
+            <li>locality stays inside each adapter</li>
+            <li>no leverage from a collapse</li>
+          </ul>
+          <p class="text-sm bg-amber-50 border border-amber-200 rounded px-3 py-2">Contradicts ADR 0001: hard-dependency skills need this seam. Collapsing it would also contradict the two-adapter principle.</p>
+        </article>
+      </section>
+
+      <section id="top-recommendation" class="rounded-xl deep text-stone-50 p-8">
+        <p class="text-xs uppercase tracking-wider text-emerald-300">Top recommendation</p>
+        <h2 class="font-serif text-3xl mt-2">Extract the deepening the survey never finishes</h2>
+        <p class="mt-3 max-w-2xl">Highest friction, and the only candidate whose interface is also the test surface. <a class="underline" href="#deepen-picked">Open the card</a>.</p>
+      </section>
+    </main>
+  </body>
+</html>

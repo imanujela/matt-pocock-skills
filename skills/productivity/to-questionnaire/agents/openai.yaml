@@ -1,0 +1,5 @@
+interface:
+  display_name: "To Questionnaire"
+  short_description: "Pull a blocked decision from the person who can answer"
+policy:
+  allow_implicit_invocation: false

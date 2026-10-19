@@ -1,0 +1,5 @@
+interface:
+  display_name: "Improve Codebase Architecture"
+  short_description: "Survey deepening opportunities as an HTML report"
+policy:
+  allow_implicit_invocation: false

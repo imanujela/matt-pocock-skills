@@ -1,0 +1,5 @@
+interface:
+  display_name: "Pressure Check"
+  short_description: "Walk one realistic run before calling an edited skill or agent doc done."
+policy:
+  allow_implicit_invocation: false

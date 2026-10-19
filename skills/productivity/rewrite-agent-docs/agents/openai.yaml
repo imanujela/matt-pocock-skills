@@ -1,0 +1,5 @@
+interface:
+  display_name: "Rewrite Agent Docs"
+  short_description: "Rewrite existing agent documents in place"
+policy:
+  allow_implicit_invocation: false

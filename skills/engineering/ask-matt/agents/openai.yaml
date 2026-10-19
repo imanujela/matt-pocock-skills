@@ -1,0 +1,5 @@
+interface:
+  display_name: "Ask Matt"
+  short_description: "Ask which skill or flow fits"
+policy:
+  allow_implicit_invocation: false
